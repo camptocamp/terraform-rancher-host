@@ -1,0 +1,21 @@
+- name: Install Docker-ce
+  apt:
+    name: docker-ce
+    state: latest
+
+- name: Enable Docker service
+  service:
+    name: docker
+    enabled: yes
+    state: started
+
+- name: Configure Docker daemon
+  copy:
+    src: daemon.json
+    dest: /etc/docker/daemon.json
+    owner: root
+    group: root
+    mode: 0644
+  notify: Restart Docker
+
+- meta: flush_handlers
