@@ -61,7 +61,6 @@ resource "null_resource" "provisioner" {
       extra_vars = {
         hostname                   = var.instances[count.index].hostname
         rancher_registration_token = rancher_registration_token.this[count.index].command
-        # That's bad, we can do much better -> https://www.terraform.io/docs/configuration/functions/range.html
         rancher_node_labels = join("&",
           [
             for key, value in var.instances[count.index].host_labels :
