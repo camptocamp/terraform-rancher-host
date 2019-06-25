@@ -1,5 +1,5 @@
 resource "rancher_registration_token" "this" {
-  count = length(var.instances)
+  count = var.instance_count
 
   name           = ""
   environment_id = var.environment_id
@@ -11,7 +11,7 @@ resource "rancher_registration_token" "this" {
 }
 
 resource "rancher_host" "this" {
-  count = length(var.instances)
+  count = var.instance_count
 
   name           = ""
   environment_id = var.environment_id
@@ -21,7 +21,8 @@ resource "rancher_host" "this" {
 }
 
 resource "null_resource" "provisioner" {
-  count = length(var.instances)
+  # Workaround to use explicit dependencies
+  count = var.instance_count
 
   connection {
     type                = lookup(var.instances[count.index].connection, "type", null)
@@ -68,6 +69,8 @@ resource "null_resource" "provisioner" {
         ])
         rancher_env_url = rancher_registration_token.this[count.index].registration_url
         rancher_image   = rancher_registration_token.this[count.index].image
+
+        foo = join(" ", var.deps_on)
       }
     }
   }
