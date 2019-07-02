@@ -6,5 +6,5 @@
   failed_when: running_agent.rc > 1
 
 - name: Start Rancher agent
-  command: sh -c "docker run -d --privileged -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/rancher:/var/lib/rancher -e CATTLE_HOST_LABELS='{{ rancher_node_labels }}' {{ rancher_image }} {{ rancher_env_url }}"
+  command: sh -c "docker run -d --privileged -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/rancher:/var/lib/rancher -e CATTLE_AGENT_IP={{ rancher_agent_ip }} -e CATTLE_HOST_LABELS='{{ rancher_node_labels }}' {{ rancher_image }} {{ rancher_env_url }}"
   when: running_agent.rc == 1

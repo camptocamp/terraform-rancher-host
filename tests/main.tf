@@ -9,6 +9,7 @@ module "rancher-host" {
   instances = [
     {
       hostname = "testing"
+      agent_ip = "192.168.50.4"
       host_labels = {
         foo = "bar"
       }

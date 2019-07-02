@@ -10,6 +10,7 @@ variable "environment_id" {
 variable "instances" {
   type = list(object({
     hostname    = string
+    agent_ip    = string
     host_labels = map(string)
     connection  = any
   }))

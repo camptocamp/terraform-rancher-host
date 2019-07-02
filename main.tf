@@ -67,8 +67,9 @@ resource "null_resource" "provisioner" {
             for key, value in var.instances[count.index].host_labels :
             format("%s=%s", key, value)
         ])
-        rancher_env_url = rancher_registration_token.this[count.index].registration_url
-        rancher_image   = rancher_registration_token.this[count.index].image
+        rancher_env_url  = rancher_registration_token.this[count.index].registration_url
+        rancher_image    = rancher_registration_token.this[count.index].image
+        rancher_agent_ip = var.instances[count.index].agent_ip
 
         foo = join(" ", var.deps_on)
       }
