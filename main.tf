@@ -74,5 +74,9 @@ resource "null_resource" "provisioner" {
         foo = join(" ", var.deps_on)
       }
     }
+
+    ansible_ssh_settings {
+      connect_timeout_seconds = 60
+    }
   }
 }
