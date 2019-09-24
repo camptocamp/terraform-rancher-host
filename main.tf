@@ -77,6 +77,7 @@ resource "null_resource" "provisioner" {
 
     ansible_ssh_settings {
       connect_timeout_seconds = 60
+      connection_attempts     = 60
     }
   }
 }
