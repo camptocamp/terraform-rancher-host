@@ -4,7 +4,7 @@ variable "instance_count" {
 }
 
 variable "environment_id" {
-  type = "string"
+  type = string
 }
 
 variable "instances" {

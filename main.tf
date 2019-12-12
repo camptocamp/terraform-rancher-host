@@ -6,7 +6,7 @@ resource "rancher_registration_token" "this" {
   host_labels    = var.instances[count.index].host_labels
 
   lifecycle {
-    ignore_changes = ["name"]
+    ignore_changes = [name]
   }
 }
 
@@ -76,8 +76,8 @@ resource "null_resource" "provisioner" {
     }
 
     ansible_ssh_settings {
-      connect_timeout_seconds = 60
-      connection_attempts     = 60
+      connect_timeout_seconds              = 60
+      connection_attempts                  = 60
       insecure_no_strict_host_key_checking = true
     }
   }
