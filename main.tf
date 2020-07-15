@@ -18,6 +18,10 @@ resource "rancher_host" "this" {
   hostname       = var.instances[count.index].hostname
 
   labels = var.instances[count.index].host_labels
+
+  depends_on = [
+    null_resource.provisioner
+  ]
 }
 
 resource "null_resource" "provisioner" {
