@@ -4,6 +4,7 @@ resource "rancher_registration_token" "this" {
   name           = ""
   environment_id = var.environment_id
   host_labels    = var.instances[count.index].host_labels
+  agent_ip       = var.instances[count.index].agent_ip
 
   lifecycle {
     ignore_changes = [name]
