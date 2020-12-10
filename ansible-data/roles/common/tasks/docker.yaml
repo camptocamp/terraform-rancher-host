@@ -1,7 +1,8 @@
-- name: Install Docker-ce
+- name: Install Docker-io
   apt:
-    name: docker-ce
+    name: docker.io
     state: latest
+  when: ansible_facts['os_family'] == "Debian"
 
 - name: Enable Docker service
   service:
