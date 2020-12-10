@@ -2,22 +2,10 @@
   hostname:
     name: "{{ hostname }}"
 
-- block:
-    - name: Update all packages to the latest version
-      apt:
-        upgrade: dist
-
-    - name: Add Camptocamp key
-      apt_key:
-        keyserver: hkp://keyserver.ubuntu.com:80
-        id: 25167F35256F82B2CA594A3DF4831166EFDCBABE
-        state: present
-
-    - name: Configure Camptocamp repository
-      apt_repository:
-        repo: deb http://pkg.camptocamp.net/apt {{ ansible_distribution_release }}/staging sysadmin docker
-        state: present
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+- name: Update all packages to the latest version
+  apt:
+    upgrade: dist
+  when: ansible_facts['os_family'] == "Debian"
 
 - import_tasks: docker.yaml
 - import_tasks: rancher.yaml
