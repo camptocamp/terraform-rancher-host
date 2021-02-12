@@ -1,3 +1,11 @@
+terraform {
+  required_providers {
+    rancher = {
+      source = "terraform-providers/rancher"
+    }
+  }
+}
+
 provider "rancher" {
   api_url = "http://192.168.50.4:8080/v2-beta"
 }
